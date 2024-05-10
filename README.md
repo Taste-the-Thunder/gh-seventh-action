@@ -15,3 +15,10 @@ EX:-
 ```
 
 Example shows that if `Test Code` fail that time `Upload test report` exicute and storing fail report
+
+### adding if condition on jobs
+```
+report:
+    needs: [lint, deploy]
+    if: failure()
+```
