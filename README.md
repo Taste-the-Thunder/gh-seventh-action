@@ -47,3 +47,30 @@ we can totaly skip if we already have cache
       run: npm run test
 ```
 it means if task fail, it also go further
+
+
+## Matrix
+
+```
+name: Matrix demo
+on: push
+jobs:
+    build:
+        continue-on-error: true
+        strategy:
+            matrix:
+                node-version: [12, 14, 16]
+                operating-system: [ubuntu-latest, windows-latest]
+        runs-on: ${{ matrix.operating-system }}
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v4
+            - name: Install Node
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{ matrix.node-version }}
+            - name: Install Dependancy
+              run: npm ci
+```
+
+we can run test with diff versions so that clear not to fail in any version
