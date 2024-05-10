@@ -22,3 +22,19 @@ report:
     needs: [lint, deploy]
     if: failure()
 ```
+
+### if condition in caching
+
+```
+    - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+```
+
+we can totaly skip if we already have cache
