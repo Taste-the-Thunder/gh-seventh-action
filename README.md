@@ -38,3 +38,12 @@ report:
 ```
 
 we can totaly skip if we already have cache
+
+
+### Continue on error
+```
+    - name: Test code
+      continue-on-error: true
+      run: npm run test
+```
+it means if task fail, it also go further
