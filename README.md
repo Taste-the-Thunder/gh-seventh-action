@@ -74,3 +74,16 @@ jobs:
 ```
 
 we can run test with diff versions so that clear not to fail in any version
+
+## Include - Exclude
+```
+  matrix:
+      node-version: [12, 14, 16]
+      operating-system: [ubuntu-latest, windows-latest]
+      include:
+          - node-version: 18
+            operating-system: ubuntu-latest
+      exclude:
+          - node-version: 12
+            operating-system: windows-latest
+```
